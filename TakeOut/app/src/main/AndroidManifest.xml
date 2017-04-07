@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".RegistActivity">
         </activity>
+        <activity android:name=".ShopcartActivity">
+        </activity>
     </application>
 
 </manifest>

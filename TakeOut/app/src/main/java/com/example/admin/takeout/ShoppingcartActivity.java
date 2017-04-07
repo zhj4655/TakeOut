@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,15 @@ public class ShoppingcartActivity extends Activity implements View.OnClickListen
 
         initItems();
         ItemAdapter adapter = new ItemAdapter(ShoppingcartActivity.this, R.layout.item_layout, itemList);
-        ListView listView = (ListView)findViewById(R.id.lv_cart_item);
-        listView.setAdapter(adapter);
+//        ListView listView = (ListView)findViewById(R.id.lv_cart_item);
+//        listView.setAdapter(adapter);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                Item item = itemList.get(position);
+//                Toast.makeText(ShoppingcartActivity.this, item.getName(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override

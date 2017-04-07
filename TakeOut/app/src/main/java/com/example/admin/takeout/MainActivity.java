@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
 
         Button button1 = (Button) findViewById(R.id.button_1);
         Button button2 = (Button)findViewById(R.id.button_2);
+        Button button3 = (Button)findViewById(R.id.button_3);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +31,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(MainActivity.this, ShoppingcartActivity.class);
+                startActivity(intent);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(MainActivity.this, ShopcartActivity.class);
                 startActivity(intent);
             }
         });

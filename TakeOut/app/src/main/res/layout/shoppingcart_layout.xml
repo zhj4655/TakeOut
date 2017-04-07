@@ -2,11 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <LinearLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/topbar_background"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -14,15 +15,15 @@
             android:layout_height="48dp"
             android:background="@android:color/transparent"
             android:orientation="vertical" >
-            <Button
+
+            <ImageView
                 android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:text="返回"
-                android:backgroundTint="@android:color/holo_blue_bright"
-                />
+                android:layout_gravity="center_vertical"
+                android:padding="12dp"
+                android:src="@mipmap/topbar_up" />
 
             <TextView
                 android:id="@+id/title"
@@ -32,42 +33,46 @@
                 android:minHeight="48dp"
                 android:text="购物车"
                 android:textColor="#1a1a1a"
-                android:textSize="16sp"
-                android:layout_alignBaseline="@+id/back"
-                android:layout_alignBottom="@+id/back"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-            <Button
-                android:id="@+id/edit"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
+                android:layout_marginRight="40dp"
+                android:gravity="center"
+                android:minHeight="48dp"
                 android:text="编辑"
-                android:backgroundTint="@android:color/holo_blue_bright"/>
+                android:textColor="#1a1a1a"
+                android:textSize="14sp"
+                android:visibility="visible" />
         </RelativeLayout>
     </LinearLayout>
-    <ListView
-        android:id="@+id/lv_cart_item"
+
+    <ExpandableListView
+        android:id="@+id/exListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </ListView>
+        android:layout_weight="1"
+        android:childIndicator="@null"
+        android:groupIndicator="@null" >
+    </ExpandableListView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#e7e1e1"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <CheckBox
             android:id="@+id/all_chekbox"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="4dp"
-            android:button="@drawable/checkbox"
+            android:button="@drawable/check_box_bg"
             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
             android:gravity="center"
             android:minHeight="64dp"
@@ -101,12 +106,13 @@
                         android:text="合计:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_total_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="￥0.00"
-                        android:textColor="@android:color/holo_orange_dark"
+                        android:textColor="@color/orangered"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -115,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:text="不含运费"
                     android:gravity="right"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -124,11 +130,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="@android:color/holo_orange_light"
+                android:background="@color/orange"
                 android:clickable="true"
                 android:gravity="center"
                 android:text="结算(0)"
                 android:textColor="#FAFAFA"
+
                 />
         </LinearLayout>
         <LinearLayout
@@ -147,11 +154,12 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:text="分享宝贝"
-                android:textColor="@android:color/white"
-                android:background="@android:color/holo_orange_dark"
+                android:textColor="@color/white"
+                android:background="@color/orange"
                 android:textSize="16sp"
                 android:layout_marginRight="5dp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tv_save"
                 android:layout_width="match_parent"
@@ -159,8 +167,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="移到收藏夹"
-                android:background="@android:color/holo_orange_dark"
-                android:textColor="@android:color/white"
+                android:background="@color/orange"
+                android:textColor="@color/white"
                 android:layout_marginRight="5dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -169,12 +177,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/holo_red_dark"
+                android:background="@color/crimson"
                 android:clickable="true"
                 android:gravity="center"
                 android:text="删除"
                 android:textColor="#FAFAFA"
                 />
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>
