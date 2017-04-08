@@ -6,30 +6,51 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by admin on 2017/4/5.
  */
 
 public class LoginActivity extends Activity implements View.OnClickListener{
-    Button button_login_tag;
-    Button button_reg_tag;
-    Button button_login;
-    Button button_back;
+    Button login_tag;
+    Button reg_tag;
+    Button login;
+
+    TextView home;
+    TextView personal;
+    TextView order;
+    ImageView head_back;
+    TextView head_title;
+    TextView head_edit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.login_layout);
-        button_login_tag = (Button)findViewById(R.id.login_tag);
-        button_reg_tag = (Button)findViewById(R.id.reg_tag);
-        button_login = (Button)findViewById(R.id.login);
-        button_back = (Button)findViewById(R.id.back);
+        login_tag = (Button)findViewById(R.id.login_tag);
+        reg_tag = (Button)findViewById(R.id.reg_tag);
+        login = (Button)findViewById(R.id.login);
+        home = (TextView)findViewById(R.id.bottom_home);
+        personal = (TextView)findViewById(R.id.bottom_personal);
+        order = (TextView)findViewById(R.id.buttom_cart);
+        head_back = (ImageView)findViewById(R.id.head_back);
+        head_title = (TextView)findViewById(R.id.head_title);
+        head_edit = (TextView)findViewById(R.id.head_edit);
 
-        button_login_tag.setOnClickListener(this);
-        button_reg_tag.setOnClickListener(this);
-        button_login.setOnClickListener(this);
-        button_back.setOnClickListener(this);
+        login_tag.setOnClickListener(this);
+        reg_tag.setOnClickListener(this);
+        login.setOnClickListener(this);
+
+        home.setOnClickListener(this);
+        personal.setOnClickListener(this);
+        order.setOnClickListener(this);
+        head_back.setOnClickListener(this);
+        head_edit.setOnClickListener(this);
+
+        head_title.setText("登录");
     }
 
     @Override
@@ -44,9 +65,23 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 finish();
                 break;
             case R.id.login:
+                //登录操作
                 break;
-            case R.id.back:
+            case R.id.bottom_home:
+                intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
+                break;
+            case R.id.buttom_cart:
+                intent = new Intent(LoginActivity.this, ShopcartActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.bottom_personal:
+                break;
+            case R.id.head_back:
+                finish();
+                break;
+            case R.id.head_edit:
                 break;
             default:
                 break;

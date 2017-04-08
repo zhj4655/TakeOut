@@ -6,58 +6,21 @@
     android:background="#e7e1e1"
     >
 
-    <LinearLayout
-        android:id="@+id/top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@android:color/holo_blue_dark"
-        android:orientation="vertical" >
+    <include layout="@layout/head_layout"
+        android:id="@+id/include2" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:orientation="vertical" >
-            <Button
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:text="返回"
-                android:backgroundTint="@android:color/holo_blue_bright"
-                />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:text="登录"
-                android:textColor="#1a1a1a"
-                android:textSize="16sp"
-                android:layout_alignBaseline="@+id/back"
-                android:layout_alignBottom="@+id/back"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-            <Button
-                android:id="@+id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:text="编辑"
-                android:backgroundTint="@android:color/holo_blue_bright"/>
-        </RelativeLayout>
-    </LinearLayout>
+    <include layout="@layout/bottom_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        >
+        android:layout_below="@+id/include2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TableRow>
             <Button
@@ -141,6 +104,12 @@
                 android:text="性别："
                 android:textColor="#19ce5b"
                 android:textSize="20dp" />
+            <RadioGroup
+                android:id="@+id/reg_sex"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
             <RadioButton
                 android:id="@+id/reg_boy"
                 android:layout_width="0dp"
@@ -158,6 +127,7 @@
                 android:checked="false"
                 android:text="女"
                 />
+            </RadioGroup>
         </TableRow>
         <TableRow>
             <Button
@@ -172,8 +142,6 @@
         </TableRow>
 
     </TableLayout>
-
-    <!--<include layout="@layout/bottom_layout" />-->
 
 
 </RelativeLayout>
