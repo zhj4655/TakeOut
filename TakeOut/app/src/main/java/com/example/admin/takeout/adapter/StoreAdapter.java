@@ -2,6 +2,7 @@ package com.example.admin.takeout.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +24,19 @@ public class StoreAdapter extends ArrayAdapter<StoreInfo> {
     private List<StoreInfo> stores;
     private Context context;
 
-    public StoreAdapter(Context context, int resource, List<StoreInfo> objects) {
-        super(context, resource, objects);
+    public StoreAdapter(Context context, int resource, List<StoreInfo> stores) {
+        super(context, resource, stores);
         resourceId = resource;
+        this.stores = stores;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        StoreInfo storeInfo = getItem(position);
+
         View view;
-        ViewHoder viewHoder;
+        final ViewHoder viewHoder;
         if(convertView == null){
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHoder = new ViewHoder();
@@ -49,11 +52,16 @@ public class StoreAdapter extends ArrayAdapter<StoreInfo> {
             view = convertView;
             viewHoder = (ViewHoder)view.getTag();
         }
-        viewHoder.name.setText("兰州拉面馆");
-        viewHoder.imageUrl.setImageResource(R.drawable.store1);
-        viewHoder.waitTime.setText("配送时间：45分钟");
-        viewHoder.qsPrice.setText("起送 ￥ 12.00");
-        viewHoder.psPrice.setText("配送 ￥ 1.00");
+        StoreInfo storeInfo = (StoreInfo)getItem(position);
+        if(storeInfo != null) {
+            viewHoder.name.setText(storeInfo.getName());
+            viewHoder.imageUrl.setImageResource(storeInfo.getImageUrl());
+            viewHoder.waitTime.setText("配送时间："+storeInfo.getWaitTime()+"分钟");
+            viewHoder.qsPrice.setText("起送费 ￥ "+storeInfo.getQsPrice());
+            viewHoder.psPrice.setText("配送费 ￥ "+storeInfo.getPsPrice());
+        }else{
+            stores.remove(position);
+        }
 
         return view;
     }

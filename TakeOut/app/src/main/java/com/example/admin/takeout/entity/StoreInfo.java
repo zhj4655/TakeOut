@@ -12,7 +12,7 @@ public class StoreInfo
     protected String name;
     protected boolean isChoosed;
     private boolean isEdtor;
-    private String imageUrl;
+    private int imageUrl;
     private int waitTime;
     private int qsPrice;
     private int psPrice;
@@ -22,7 +22,7 @@ public class StoreInfo
         this.name = name;
     }
 
-    public StoreInfo(String id, String name, String imageUrl, int waitTime, int qsPrice, int psPrice){
+    public StoreInfo(String id, String name, int imageUrl, int waitTime, int qsPrice, int psPrice){
         Id = id;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -31,10 +31,10 @@ public class StoreInfo
         this.psPrice = psPrice;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
     }
-    public String getImageUrl() {
+    public int getImageUrl() {
         return imageUrl;
     }
 

@@ -1,4 +1,4 @@
-package com.example.admin.takeout;
+package com.example.admin.takeout.controller;
 
 /**
  * Created by admin on 2017/4/7.
@@ -19,6 +19,7 @@ package com.example.admin.takeout;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.admin.takeout.R;
         import com.example.admin.takeout.adapter.ShopcartAdapter;
         import com.example.admin.takeout.entity.StoreInfo;
         import com.example.admin.takeout.entity.GoodsInfo;
@@ -125,7 +126,7 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
                 count+=1;
             }
         }
-        title.setText("购物车" + "(" + count + ")");
+        title.setText("订单" + "(" + count + ")");
     }
 
     /**

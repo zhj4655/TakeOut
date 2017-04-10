@@ -26,6 +26,14 @@ public class GoodsInfo {
         this.goodsImg = goodsImg;
     }
 
+    public GoodsInfo(String id, String name, int goodsImg, int count, double price){
+        Id = id;
+        this.name = name;
+        this.goodsImg = goodsImg;
+        this.count = count;
+        this.price = price;
+    }
+
     public GoodsInfo(String id, String name, String desc, double price, int count,int goodsImg) {
         Id = id;
         this.name = name;
