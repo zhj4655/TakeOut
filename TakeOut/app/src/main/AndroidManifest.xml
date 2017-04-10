@@ -8,20 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".controller.LoginActivity">
         </activity>
-        <activity android:name=".ShoppingcartActivity">
+        <activity android:name=".controller.RegistActivity">
         </activity>
-        <activity android:name=".RegistActivity">
+        <activity android:name=".controller.ShopcartActivity">
         </activity>
-        <activity android:name=".ShopcartActivity">
+        <activity android:name=".controller.GoodsActivity">
         </activity>
     </application>
 

@@ -12,18 +12,41 @@ public class StoreInfo
     protected String name;
     protected boolean isChoosed;
     private boolean isEdtor;
-
-    public boolean isEdtor() {
-        return isEdtor;
-    }
-
-    public void setIsEdtor(boolean isEdtor) {
-        this.isEdtor = isEdtor;
-    }
+    private int imageUrl;
+    private int waitTime;
+    private int qsPrice;
+    private int psPrice;
 
     public StoreInfo(String id, String name) {
         Id = id;
         this.name = name;
+    }
+
+    public StoreInfo(String id, String name, int imageUrl, int waitTime, int qsPrice, int psPrice){
+        Id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.waitTime = waitTime;
+        this.qsPrice = qsPrice;
+        this.psPrice = psPrice;
+    }
+
+    public void setImageUrl(int imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    public int getImageUrl() {
+        return imageUrl;
+    }
+
+    public boolean isEdtor() {
+        return isEdtor;
+    }
+//    public boolean getIsEdtor() {
+//        return isEdtor;
+//    }
+
+    public void setIsEdtor(boolean isEdtor) {
+        this.isEdtor = isEdtor;
     }
 
     public String getId() {
@@ -48,6 +71,29 @@ public class StoreInfo
 
     public void setChoosed(boolean isChoosed) {
         this.isChoosed = isChoosed;
+    }
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
+
+    public int getQsPrice() {
+        return qsPrice;
+    }
+
+    public void setQsPrice(int qsPrice) {
+        this.qsPrice = qsPrice;
+    }
+
+    public int getPsPrice() {
+        return psPrice;
+    }
+
+    public void setPsPrice(int psPrice) {
+        this.psPrice = psPrice;
     }
 }
 

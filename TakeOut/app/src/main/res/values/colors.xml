@@ -378,5 +378,32 @@
     <!-- 橙色 -->
     <color name="orange_color">#de6838</color>
 
+
+    <color name="gray_lite">#c5c5c5</color>
+    <color name="phone_bg">#f6f6f6</color>
+
+    <color name="itemlist">#f4f4f4</color>
+    <color name="watermark_hint">#ccffffff</color>
+    <color name="act_background">#efefef</color>
+
+
+
+
+    <color name="Indigo_colorPrimaryDark">#303f9f</color>
+    <color name="Indigo_colorPrimary">#3f51b5</color>
+    <color name="Indigo_nav_color">#4675FF</color>
+
+
+    <color name="bg_black">#000000</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bg_topbar">#FCFCFC</color>
+    <color name="bg_gray">#00F1F1F1</color>
+    <color name="trans_parent">#00FFFFFF</color>
+
+    <color name="text_white">#FFFFFF</color>
+
+    <color name="text_topbar">#694E42</color>
+    <color name="div_white">#E5E5E5</color>
+
 </resources>
 
