@@ -6,10 +6,12 @@ package com.example.admin.takeout.controller;
         import android.app.Activity;
         import android.content.Context;
         import android.content.DialogInterface;
+        import android.content.Intent;
         import android.os.Bundle;
         import android.os.Handler;
         import android.os.Message;
         import android.support.v7.app.AlertDialog;
+        import android.util.Log;
         import android.view.View;
         import android.view.Window;
         import android.widget.CheckBox;
@@ -21,15 +23,15 @@ package com.example.admin.takeout.controller;
 
         import com.example.admin.takeout.R;
         import com.example.admin.takeout.adapter.ShopcartAdapter;
+        import com.example.admin.takeout.data.Data;
         import com.example.admin.takeout.entity.StoreInfo;
         import com.example.admin.takeout.entity.GoodsInfo;
 
 
         import java.util.ArrayList;
-        import java.util.HashMap;
+        import java.util.Iterator;
         import java.util.List;
         import java.util.Map;
-        import java.util.Random;
 
 //        import butterknife.ButterKnife;
 //        import butterknife.InjectView;
@@ -40,6 +42,8 @@ package com.example.admin.takeout.controller;
  */
 public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckInterface,
         ShopcartAdapter.ModifyCountInterface, ShopcartAdapter.GroupEdtorListener ,View.OnClickListener{
+
+    Data app;
 
     ImageView back;
     TextView title;
@@ -58,18 +62,20 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
     private Context context;
     private double totalPrice = 0.00;// 购买的商品总价
     private int totalCount = 0;// 购买的商品总数量
+    private double singlePrice = 0.00;//一个商店商品总价
     private ShopcartAdapter selva;
     private List<StoreInfo> groups = new ArrayList<StoreInfo>();// 组元素数据列表
-    private Map<String, List<GoodsInfo>> children = new HashMap<String, List<GoodsInfo>>();// 子元素数据列表
+    private Map<String, List<GoodsInfo>> children;// = new HashMap<String, List<GoodsInfo>>();// 子元素数据列表
     private int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.shoppingcart_layout);
+        setContentView(R.layout.shopcart_layout);
         context = this;
 
+        app = (Data)getApplication();
         back = (ImageView)findViewById(R.id.back);
         title = (TextView)findViewById(R.id.title);
         subtitle = (TextView)findViewById(R.id.subtitle);
@@ -97,7 +103,7 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
     }
 
     private void initEvents() {
-        selva = new ShopcartAdapter(groups, children, this);
+        selva = new ShopcartAdapter(groups, app.cart_goods, this);
         selva.setCheckInterface(this);// 关键步骤1,设置复选框接口
         selva.setModifyCountInterface(this);// 关键步骤2,设置数量增减接口
         selva.setmListener(this);
@@ -135,16 +141,22 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
      * 其键是组元素的Id(通常是一个唯一指定组元素身份的值)
      */
     private void initDatas() {
-        for (int i = 0; i < 3; i++) {
-            groups.add(new StoreInfo(i + "", "外卖" + (i + 1) + "号店"));
-            List<GoodsInfo> products = new ArrayList<GoodsInfo>();
-            for (int j = 0; j <= i; j++) {
-                int[]   img={R.drawable.goods1,R.drawable.goods2,R.drawable.goods3,R.drawable.goods4,R.drawable.goods5,R.drawable.goods6};
-                products.add(new GoodsInfo(j + "", "商品",
-                        "第" + (j + 1) + "个商品", 12.00 + new Random().nextInt(23), new Random().nextInt(5) + 1,  img[i*j]));
-            }
-            children.put(groups.get(i).getId(), products);// 将组元素的一个唯一值，这里取Id，作为子元素List的Key
+        children = app.cart_goods;
+        for(String  storeId : children.keySet()){
+//            Log.d("Shopcartinitdata", store+cnt);
+            groups.add(new StoreInfo(storeId, app.store_groups.get(Integer.parseInt(storeId)).getName()));
         }
+        calculate();
+//        for (int i = 0; i < 3; i++) {
+//            groups.add(new StoreInfo(i + "", "外卖" + (i + 1) + "号店"));
+//            List<GoodsInfo> products = new ArrayList<GoodsInfo>();
+//            for (int j = 0; j <= i; j++) {
+//                int[]   img={R.drawable.goods1,R.drawable.goods2,R.drawable.goods3,R.drawable.goods4,R.drawable.goods5,R.drawable.goods6};
+//                products.add(new GoodsInfo(j + "", "商品",
+//                        "第" + (j + 1) + "个商品", 12.00 + new Random().nextInt(23), new Random().nextInt(5) + 1,  img[i*j]));
+//            }
+//            children.put(groups.get(i).getId(), products);// 将组元素的一个唯一值，这里取Id，作为子元素List的Key
+//        }
 //GoodsInfo(String id, String name, String desc, double price, int count,int goodsImg)
     }
 
@@ -169,6 +181,7 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
             }
             childs.removeAll(toBeDeleteProducts);
         }
+
         groups.removeAll(toBeDeleteGroups);
         selva.notifyDataSetChanged();
         calculate();
@@ -210,6 +223,8 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
         List<GoodsInfo> childs = children.get(group.getId());
         if (childs.size() == 0) {
             groups.remove(groupPosition);
+            children.remove(group.getId());
+
         }
         selva.notifyDataSetChanged();
         handler.sendEmptyMessage(0);
@@ -299,15 +314,18 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
         for (int i = 0; i < groups.size(); i++) {
             StoreInfo group = groups.get(i);
             List<GoodsInfo> childs = children.get(group.getId());
+            singlePrice = 0.00;
             for (int j = 0; j < childs.size(); j++) {
                 GoodsInfo product = childs.get(j);
                 if (product.isChoosed()) {
                     totalCount++;
-                    totalPrice += product.getPrice() * product.getCount();
+                    singlePrice += product.getPrice() * product.getCount();
                 }
             }
-
-
+            if(singlePrice > 0){
+                totalPrice += singlePrice;
+                totalPrice += app.store_groups.get(i).getPsPrice();
+            }
         }
         tvTotalPrice.setText("￥" + totalPrice);
         tvGoToPay.setText("去支付(" + totalCount + ")");
@@ -316,6 +334,7 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
    // @OnClick({R.id.all_chekbox, R.id.tv_delete, R.id.tv_go_to_pay, R.id.subtitle, R.id.tv_save, R.id.tv_share})
     public void onClick(View view) {
         AlertDialog alert;
+        Intent intent;
         switch (view.getId()) {
             case R.id.all_chekbox:
                 doCheckAll();
@@ -347,6 +366,12 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
             case R.id.tv_go_to_pay:
                 if (totalCount == 0) {
                     Toast.makeText(context, "请选择要支付的商品", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(app.isLogin() == false){
+                    intent = new Intent(ShopcartActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                     return;
                 }
                 alert = new AlertDialog.Builder(context).create();

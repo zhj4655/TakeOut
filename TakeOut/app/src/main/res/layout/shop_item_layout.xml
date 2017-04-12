@@ -15,21 +15,6 @@
         android:background="@color/page_backgroup"
         android:orientation="horizontal" >
 
-        <!--<CheckBox-->
-            <!--android:id="@+id/check_box"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginRight="4dp"-->
-            <!--android:button="@drawable/check_box_bg"-->
-            <!--android:checkMark="?android:attr/listChoiceIndicatorMultiple"-->
-            <!--android:gravity="center"-->
-            <!--android:minHeight="64dp"-->
-            <!--android:minWidth="32dp"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-            <!--android:visibility="visible" />-->
-
         <ImageView
             android:id="@+id/goods_list_pic"
             android:layout_width="85dp"
@@ -57,7 +42,7 @@
                 android:layout_marginTop="20dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="第八号当铺猕猴桃"
+                android:text="美食1"
                 android:textColor="@color/grey_color1"
                 android:textSize="@dimen/txt_14" />
 

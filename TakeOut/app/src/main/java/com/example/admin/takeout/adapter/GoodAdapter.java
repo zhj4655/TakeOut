@@ -2,6 +2,7 @@ package com.example.admin.takeout.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ public class GoodAdapter extends ArrayAdapter<GoodsInfo> {
     private List<GoodsInfo> goods;
     private int resourceId;
 
+    private ModifyCountInterface modifyCountInterface;
+
     public GoodAdapter(Context context, int resource, List<GoodsInfo> goods) {
         super(context, resource, goods);
         this.context = context;
@@ -30,9 +33,13 @@ public class GoodAdapter extends ArrayAdapter<GoodsInfo> {
         resourceId = resource;
     }
 
+    public void setModifyCountInterface(ModifyCountInterface modifyCountInterface) {
+        this.modifyCountInterface = modifyCountInterface;
+    }
+
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view;
         final ViewHoder viewHoder;
         if(convertView == null){
@@ -42,7 +49,10 @@ public class GoodAdapter extends ArrayAdapter<GoodsInfo> {
             viewHoder.imageUrl = (ImageView) view.findViewById(R.id.goods_list_pic);
             viewHoder.price = (TextView)view.findViewById(R.id.good_price);
             viewHoder.count = (TextView)view.findViewById(R.id.good_num);
+            viewHoder.good_increase = (TextView)view.findViewById(R.id.good_add);
+            viewHoder.good_decrease = (TextView)view.findViewById(R.id.good_reduce);
 
+            view.setTag(viewHoder);
         }else{
             view = convertView;
             viewHoder = (ViewHoder)view.getTag();
@@ -51,8 +61,21 @@ public class GoodAdapter extends ArrayAdapter<GoodsInfo> {
         if(goodsInfo != null) {
             viewHoder.name.setText(goodsInfo.getName());
             viewHoder.imageUrl.setImageResource(goodsInfo.getGoodsImg());
-            viewHoder.price.setText("× ￥ "+goodsInfo.getPrice());
-            viewHoder.count.setText("配送费 ￥ "+goodsInfo.getCount());
+            viewHoder.price.setText("× ￥ " + goodsInfo.getPrice());
+            viewHoder.count.setText("" + goodsInfo.getCount());
+
+            viewHoder.good_increase.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    modifyCountInterface.doIncrease(position,viewHoder.count);
+                }
+            });
+            viewHoder.good_decrease.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    modifyCountInterface.doDecrease(position, viewHoder.count);
+                }
+            });
         }else{
             goods.remove(position);
         }
@@ -65,5 +88,27 @@ public class GoodAdapter extends ArrayAdapter<GoodsInfo> {
         ImageView imageUrl;
         TextView price;
         TextView count;
+        TextView good_increase;
+        TextView good_decrease;
+
+    }
+
+
+    public interface ModifyCountInterface {
+        /**
+         * 增加操作
+         * @param position 元素位置
+         * @param showCountView 用于展示变化后数量的View
+         */
+        public void doIncrease(int position, View showCountView);
+
+        /**
+         * 删减操作
+         *
+         * @param position 元素位置
+         * @param showCountView 用于展示变化后数量的View
+         */
+        public void doDecrease(int position, View showCountView);
+
     }
 }

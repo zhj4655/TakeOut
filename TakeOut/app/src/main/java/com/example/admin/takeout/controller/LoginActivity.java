@@ -3,19 +3,24 @@ package com.example.admin.takeout.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.takeout.R;
+import com.example.admin.takeout.data.Data;
 
 /**
  * Created by admin on 2017/4/5.
  */
 
 public class LoginActivity extends Activity implements View.OnClickListener{
+    Data app;
+
     Button login_tag;
     Button reg_tag;
     Button login;
@@ -26,6 +31,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     ImageView head_back;
     TextView head_title;
     TextView head_edit;
+    TextView username;
+    TextView password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,9 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         head_back = (ImageView)findViewById(R.id.head_back);
         head_title = (TextView)findViewById(R.id.head_title);
         head_edit = (TextView)findViewById(R.id.head_edit);
+        username = (TextView)findViewById(R.id.account);
+        password = (TextView)findViewById(R.id.password);
+        app = (Data)getApplication();
 
         login_tag.setOnClickListener(this);
         reg_tag.setOnClickListener(this);
@@ -53,6 +63,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         head_edit.setOnClickListener(this);
 
         head_title.setText("登录");
+        personal.setBackgroundColor(getResources().getColor(R.color.menu_item_press));
     }
 
     @Override
@@ -67,7 +78,17 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 finish();
                 break;
             case R.id.login:
-                //登录操作
+                String user_name = username.getText().toString();
+                String pass_word = password.getText().toString();
+                if(user_name.equals(app.userInfo.getAccount()) && pass_word.equals(app.userInfo.getPassword())){
+                    app.setLogin(true);
+                    intent = new Intent(LoginActivity.this, PersonalInfoActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "用户名或者密码不正确",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.bottom_home:
                 intent = new Intent(LoginActivity.this, MainActivity.class);

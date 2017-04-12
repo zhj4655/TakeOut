@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e7e1e1"
     >
 
     <include layout="@layout/head_layout"
@@ -28,14 +27,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="登录"
-                android:background="#64ceb3"/>
+                android:background="#35ec0c"/>
             <Button
                 android:id="@+id/reg_tag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="注册"
-                android:background="#a7a4a4"/>
+                android:background="#8fc9d2d2"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -43,13 +42,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="账户："
-                android:textColor="#19ce5b"
                 android:textSize="20dp"/>
             <EditText
                 android:id="@+id/account"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                android:layout_weight="3"
+                android:inputType="number"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -57,7 +56,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="密码："
-                android:textColor="#19ce5b"
                 android:textSize="20dp"/>
             <EditText
                 android:id="@+id/password"

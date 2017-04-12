@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.admin.takeout.R;
 import com.example.admin.takeout.adapter.StoreAdapter;
+import com.example.admin.takeout.data.Data;
 import com.example.admin.takeout.entity.StoreInfo;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends Activity implements View.OnClickListener{
+    Data app;
 
     TextView home;
     TextView personal;
@@ -42,6 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         head_back = (ImageView)findViewById(R.id.head_back);
         head_title = (TextView)findViewById(R.id.head_title);
         head_edit = (TextView)findViewById(R.id.head_edit);
+        app  = (Data)getApplication();
 
         home.setOnClickListener(this);
         personal.setOnClickListener(this);
@@ -50,6 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         head_edit.setOnClickListener(this);
 
         head_title.setText("外卖首页");
+        home.setBackgroundColor(getResources().getColor(R.color.menu_item_press));
 
         initStore();
 
@@ -58,26 +62,23 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
     public void initStore() {
-        String name[] = {"兰州拉面馆","肯德基", "麦当劳", "烤肉拌饭", "水饺店","兰州拉面馆","肯德基", "麦当劳", "烤肉拌饭", "水饺店"};
-        int image[] = {R.drawable.store1,R.drawable.store2,R.drawable.store3,R.drawable.store4,R.drawable.store5,
-                R.drawable.store1,R.drawable.store2,R.drawable.store3,R.drawable.store4,R.drawable.store5};
-        for(int i = 0; i < 10; i++){
-            storeList.add(new StoreInfo(""+i, name[i], image[i], 10 + new Random().nextInt(40),
-                    8 + new Random().nextInt(10), new Random().nextInt(3)));
-        }
+//        for(StoreInfo storeInfo : app.store_groups){
+//            storeList.add(storeInfo);
+//        }
 // public StoreInfo(String id, String name, int imageUrl, int waitTime, int qsPrice, int psPrice){
     }
 
     public void initEvent(){
-        StoreAdapter storeAdapter = new StoreAdapter(MainActivity.this, R.layout.item_store, storeList);
+        StoreAdapter storeAdapter = new StoreAdapter(MainActivity.this, R.layout.item_store, app.store_groups);
         ListView listView = (ListView)findViewById(R.id.store_list);
         listView.setAdapter(storeAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                StoreInfo store = storeList.get(i);
+                StoreInfo store = app.store_groups.get(i);
 //                Toast.makeText(MainActivity.this, store.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, GoodsActivity.class);
+                intent.putExtra("store_id", store.getId());
                 startActivity(intent);
             }
         });
@@ -93,9 +94,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.bottom_personal:
-                intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                boolean isLogin = app.isLogin();
+                if(isLogin == false) {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    intent = new Intent(MainActivity.this, PersonalInfoActivity.class);
+                    startActivity(intent);
+//                    finish();
+                }
                 break;
             case R.id.head_back:
                 finish();
