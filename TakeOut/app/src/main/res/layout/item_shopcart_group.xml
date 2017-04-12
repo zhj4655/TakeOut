@@ -34,7 +34,6 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/determine_chekbox"
             android:background="@android:color/white"
-            android:drawableLeft="@mipmap/shop_ico"
             android:drawablePadding="10dp"
             android:drawableRight="@mipmap/s_jr_ico"
             android:text="第八号当铺"

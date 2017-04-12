@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e7e1e1"
     >
 
     <include layout="@layout/head_layout"
@@ -29,14 +28,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="登录"
-                android:background="#a7a4a4"/>
+                android:background="#8fc9d2d2"/>
             <Button
                 android:id="@+id/reg_tag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="注册"
-                android:background="#64ceb3"/>
+                android:background="#35ec0c"
+                />
         </TableRow>
         <TableRow>
             <TextView
@@ -44,13 +44,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="账户："
-                android:textColor="#19ce5b"
                 android:textSize="20dp"/>
             <EditText
                 android:id="@+id/account"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                android:hint="输入手机号"
+                android:layout_weight="2.5"
+                android:inputType="number"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -58,13 +59,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="密码："
-                android:textColor="#19ce5b"
                 android:textSize="20dp"/>
             <EditText
                 android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2.5"
                 android:inputType="textPassword"/>
         </TableRow>
         <TableRow>
@@ -74,12 +74,12 @@
                 android:layout_weight="1"
                 android:text="确认密码："
                 android:textSize="19dp"
-                android:textColor="#19ce5b"/>
+                />
             <EditText
                 android:id="@+id/repassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2.5"
                 android:inputType="textPassword"/>
         </TableRow>
         <TableRow>
@@ -88,13 +88,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="昵称："
-                android:textColor="#19ce5b"
                 android:textSize="20dp"/>
             <EditText
                 android:id="@+id/nickname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                android:layout_weight="2.5"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -102,16 +101,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="性别："
-                android:textColor="#19ce5b"
                 android:textSize="20dp" />
             <RadioGroup
-                android:id="@+id/reg_sex"
+                android:id="@+id/reg_gender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:orientation="horizontal">
             <RadioButton
-                android:id="@+id/reg_boy"
+                android:id="@+id/reg_man"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -120,7 +118,7 @@
                 />
 
             <RadioButton
-                android:id="@+id/reg_girl"
+                android:id="@+id/reg_woman"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

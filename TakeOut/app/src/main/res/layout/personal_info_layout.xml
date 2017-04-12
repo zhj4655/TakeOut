@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_layout"
+        android:id="@+id/include3"/>
+
+    <include layout="@layout/bottom_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/include4" />
+
+
+    <TableLayout
+        android:id="@+id/info_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="visible">
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="昵称："/>
+            <TextView
+                android:id="@+id/info_nickname"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="nickname"/>
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="性别："/>
+            <TextView
+                android:id="@+id/info_gender"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="男"/>
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="联系电话："/>
+            <TextView
+                android:id="@+id/info_tel"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="123456789"/>
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="送餐地址："/>
+            <TextView
+                android:id="@+id/info_address"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:text="青岛大学"/>
+        </TableRow>
+
+        <TableRow android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/logout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_span="2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="注销"
+                android:background="@android:color/holo_red_light"
+                android:layout_above="@+id/include4" />
+        </TableRow>
+    </TableLayout>
+    <TableLayout
+        android:id="@+id/info_modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="gone">
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="昵称："/>
+            <EditText
+                android:id="@+id/modify_nickname"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:textSize="20dp"
+                />
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:text="性别："/>
+            <RadioGroup
+                android:id="@+id/modify_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/modify_man"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="男"
+                    />
+
+                <RadioButton
+                    android:id="@+id/modify_woman"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="女"
+                    />
+            </RadioGroup>
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="联系电话："/>
+            <EditText
+                android:id="@+id/modify_tel"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:textSize="20dp"
+                android:inputType="number"
+                />
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="送餐地址："/>
+            <EditText
+                android:id="@+id/modify_address"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:textSize="20dp"
+                />
+        </TableRow>
+        <TableRow android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/modify"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_span="2"
+                android:text="修改"
+                android:background="@android:color/holo_blue_light"
+                android:layout_margin="15dp"/>
+        </TableRow>
+    </TableLayout>
+
+
+</RelativeLayout>

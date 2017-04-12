@@ -9,6 +9,7 @@ package com.example.admin.takeout.adapter;
         import android.text.Spannable;
         import android.text.SpannableString;
         import android.text.style.StrikethroughSpan;
+        import android.util.Log;
         import android.view.View;
         import android.view.View.OnClickListener;
         import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int groupPosition) {
         String groupId = groups.get(groupPosition).getId();
+//        Log.d("ShopApadter", groupId);
         return children.get(groupId).size();
     }
 
@@ -159,8 +161,9 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             cholder = new ChildViewHolder();
             convertView = View.inflate(context, R.layout.item_shopcart_product, null);
             cholder.cb_check = (CheckBox) convertView.findViewById(R.id.check_box);
-            cholder.tv_product_desc = (TextView) convertView.findViewById(R.id.tv_intro);
+//            cholder.tv_product_desc = (TextView) convertView.findViewById(R.id.tv_intro);
             cholder.tv_price = (TextView) convertView.findViewById(R.id.tv_price);
+            cholder.tv_product_name = (TextView)convertView.findViewById(R.id.tv_product_name);
             cholder.iv_increase = (TextView) convertView.findViewById(R.id.tv_add);
             cholder.iv_decrease = (TextView) convertView.findViewById(R.id.tv_reduce);
             cholder.tv_count = (TextView) convertView.findViewById(R.id.tv_num);
@@ -185,7 +188,8 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
         }
         final GoodsInfo goodsInfo = (GoodsInfo) getChild(groupPosition, childPosition);
         if (goodsInfo != null) {
-            cholder.tv_product_desc.setText(goodsInfo.getDesc());
+            cholder.tv_product_name.setText(goodsInfo.getName());
+//            cholder.tv_product_desc.setText(goodsInfo.getDesc());
             cholder.tv_price.setText("￥" + goodsInfo.getPrice() + "");
             cholder.tv_count.setText(goodsInfo.getCount() + "");
             cholder.iv_adapter_list_pic.setImageResource(goodsInfo.getGoodsImg());
