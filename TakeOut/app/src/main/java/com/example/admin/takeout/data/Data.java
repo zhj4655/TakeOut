@@ -55,27 +55,27 @@ public class Data extends Application {
         int qsPrice[] = {10, 12, 11, 13, 15};
         int psPrice[] = {1, 2, 1, 0, 1};
 
-        int[][]   foodImg={{R.drawable.goods1,R.drawable.goods4,R.drawable.goods5},
-                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3},
-                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3},
-                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3},
-                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3}};
+        int[][]   foodImg={{R.drawable.food1_1,R.drawable.food1_2,R.drawable.food1_3,R.drawable.food1_4,R.drawable.food1_5},
+                {R.drawable.food2_1,R.drawable.food2_2,R.drawable.food2_3,R.drawable.food2_4,R.drawable.food2_5},
+                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3,R.drawable.goods4,R.drawable.goods5},
+                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3,R.drawable.goods4,R.drawable.goods5},
+                {R.drawable.goods1,R.drawable.goods2,R.drawable.goods3,R.drawable.goods4,R.drawable.goods5}};
 
-        double goodPrice [][]= {{8.00, 9.00, 7.50},
-                {8.00, 9.00, 10.00},
-                {8.00, 9.00, 10.00},
-                {8.00, 9.00, 10.00},
-                {8.00, 9.00, 10.00}};
-        String goodName[][] = {{"美食1","美食2","美食3"},
-                {"美食1","美食2","美食3"},
-                {"美食1","美食2","美食3"},
-                {"美食1","美食2","美食3"},
-                {"美食1","美食2","美食3"}};
+        double goodPrice [][]= {{10.00, 10.00, 7.50, 8.00, 9.00},
+                {15.00, 12.00, 10.00, 5.00, 15.00},
+                {8.00, 9.00, 10.00, 3.50, 4.00},
+                {8.00, 9.00, 10.00, 7.00, 8.50},
+                {8.00, 9.00, 10.00, 3.99, 2.00}};
+        String goodName[][] = {{"牛肉拉面","牛肉刀削面","西红柿鸡蛋面","三鲜面","炸酱面"},
+                {"香辣/劲脆鸡腿堡","培根鸡腿燕麦堡","香辣鸡翅","薯条","红豆圆奶茶"},
+                {"美食1","美食2","美食3","美食4","美食5"},
+                {"美食1","美食2","美食3","美食4","美食5"},
+                {"美食1","美食2","美食3","美食4","美食5"}};
 
         for(int i = 0; i < 5; i ++){
             store_groups.add(new StoreInfo(i + "",name[i], image[i], waitTime[i], qsPrice[i], psPrice[i]));
             List<GoodsInfo> good = new ArrayList<GoodsInfo>();
-            for(int j = 0; j < 3; j++){
+            for(int j = 0; j < 5; j++){
                 good.add(new GoodsInfo(j + "", goodName[i][j], foodImg[i][j], 0, goodPrice[i][j]));
             }
             all_goods.put(i+"", good);
