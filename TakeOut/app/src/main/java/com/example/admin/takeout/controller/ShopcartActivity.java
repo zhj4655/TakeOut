@@ -95,6 +95,7 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
         subtitle.setOnClickListener(this);
         tvSave.setOnClickListener(this);
         tvShare.setOnClickListener(this);
+        back.setOnClickListener(this);
 
 
         initDatas();//模拟添加商品
@@ -420,6 +421,11 @@ public class ShopcartActivity extends Activity implements ShopcartAdapter.CheckI
                     return;
                 }
                 Toast.makeText(ShopcartActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.back:
+                finish();
+                break;
+            default:
                 break;
         }
     }
